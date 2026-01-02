@@ -20,8 +20,8 @@ public:
     void reset();
 
 private:
-    double total_error_;
-    double prior_error_;
+    double total_error_ = 0.0;
+    double prior_error_ = 0.0;
 };
 
 } // namespace ccl
