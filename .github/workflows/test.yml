@@ -1,0 +1,42 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  cpp:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Configure
+        run: cmake -B build
+      
+      - name: Build
+        run: cmake --build build
+      
+      - name: Test
+        run: cd build && ctest -V
+
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+      
+      - name: Configure CMake
+        run: cmake -B build
+      
+      - name: Build
+        run: cmake --build build
+      
+      - name: Install Python package
+        run: uv pip install -e ".[dev]" --system
+      
+      - name: Test
+        run: uv run --system pytest

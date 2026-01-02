@@ -4,9 +4,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 project(
-    CppLibraryTemplate
+    ccl
     VERSION 0.0.1
-    DESCRIPTION "C++ library template"
+    DESCRIPTION "Common Control Library (CCL)"
     LANGUAGES CXX
 )
 
@@ -30,26 +30,27 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest pybind11)
 
 add_library(
-    mylib
-    src/mylib.cpp
+    ccl
+    src/ccl.cpp
+    src/pid.cpp
 )
 
 target_include_directories(
-    mylib PUBLIC
+    ccl PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 if(BUILD_PYTHON_API)
     pybind11_add_module(
-        _mylib
+        _ccl
         src/python.cpp
     )
 
-    target_link_libraries(_mylib PRIVATE mylib)
+    target_link_libraries(_ccl PRIVATE ccl)
 
     set_target_properties(
-        _mylib PROPERTIES
-        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/python/mylib/
+        _ccl PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/python/ccl/
     )
 endif()
 
@@ -57,17 +58,18 @@ if(BUILD_CXX_TESTS)
     enable_testing()
 
     add_executable(
-        mylib_test
-        tests/test.cpp
+        ccl_test
+        tests/ccl_test.cpp
+        tests/pid_test.cpp
     )
 
     target_link_libraries(
-        mylib_test PRIVATE
-        mylib
+        ccl_test PRIVATE
+        ccl
         GTest::gtest_main
     )
 
     include(GoogleTest)
 
-    gtest_discover_tests(mylib_test)
+    gtest_discover_tests(ccl_test)
 endif()

@@ -2,8 +2,8 @@
 
 #include <string>
 
-namespace mylib {
+namespace ccl {
 
 std::string hello();
 
-} // namespace mylib
+} // namespace ccl

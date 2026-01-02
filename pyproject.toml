@@ -3,12 +3,16 @@ requires = ["setuptools", "pybind11"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mylib"
+name = "ccl"
 version = "0.0.1"
 
 [project.optional-dependencies]
 dev = ["marimo", "pytest"]
 
 [tool.setuptools]
-packages = ["mylib"]
-package-dir = {"mylib" = "python/mylib"}
+packages = ["ccl"]
+package-dir = {"ccl" = "python/ccl"}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]

@@ -1,6 +1,6 @@
-# cpp-lib-template
+# ccl
 
-A template for C++ libraries with Python bindings, testing, and marimo notebook support.
+Common Control Library (CCL)
 
 ## Prerequisites
 
@@ -43,11 +43,11 @@ make notebook
 
 ## Project Structure
 ```
-cpp-lib-template/
+ccl/
 ├── include/           # C++ headers
 ├── src/               # C++ source files
 ├── tests/             # C++ and Python tests
-├── python/mylib/      # Python package with bindings
+├── python/ccl/        # Python package with bindings
 ├── notebooks/         # Marimo notebooks
 └── CMakeLists.txt
 ```

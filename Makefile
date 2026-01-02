@@ -4,7 +4,7 @@ build.cpp:
 	cmake --build build --target install -j$(nproc)
 
 build.python:
-	uv pip install -e .
+	uv pip install -e ".[dev]"
 
 clean:
 	rm -fr build
@@ -16,7 +16,7 @@ notebook:
 	uv run marimo edit notebooks/main.py --host 0.0.0.0 --headless --no-token
 
 test.cpp:
-	cd build && ctest && cd -
+	cd build && ctest -V && cd -
 
 test.python:
 	uv run pytest
