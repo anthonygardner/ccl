@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools", "pybind11"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mylib"
+version = "0.0.1"
+
+[project.optional-dependencies]
+dev = ["marimo", "pytest"]
+
+[tool.setuptools]
+packages = ["mylib"]
+package-dir = {"mylib" = "python/mylib"}
