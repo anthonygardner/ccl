@@ -19,6 +19,7 @@ public:
 
 private:
     float angle_ = 0.0;
+    bool initialized_ = false;
 
     const float gyro_weight_;
     const float dt_;
