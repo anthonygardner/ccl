@@ -34,12 +34,16 @@ add_library(
     src/ccl.cpp
     src/complementary_filter.cpp
     src/pid.cpp
+    src/uart.cpp
 )
 
 target_include_directories(
     ccl PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
+add_executable(complementary_filter_demo demos/complementary_filter_demo.cpp)
+target_link_libraries(complementary_filter_demo ccl)
 
 if(BUILD_PYTHON_API)
     pybind11_add_module(

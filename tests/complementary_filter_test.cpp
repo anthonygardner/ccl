@@ -14,7 +14,7 @@ TEST(ComplementaryFilterTest, TimeConstantGetter) {
 }
 
 TEST(ComplementaryFilterTest, UpdateConvergesWithZeroAngularRate) {
-    ccl::ComplementaryFilter filter(0.98f, 0.1f); // Trust the gyro
+    ccl::ComplementaryFilter filter(0.98f, 0.1f);  // Trust the gyro
 
     float target_angle = 1.0f;
     float gyro_rate = 0.0f;
@@ -26,8 +26,8 @@ TEST(ComplementaryFilterTest, UpdateConvergesWithZeroAngularRate) {
     EXPECT_NEAR(filter.angle(), target_angle, 0.01f);
 }
 
-TEST(ComplementaryFilterTest, UpdateConvergesWithNonzeroAngularRate) {
-    ccl::ComplementaryFilter filter(0.98f, 0.1f); // Trust the gyro
+TEST(ComplementaryFilterTest, UpdateDivergesWithNonzeroAngularRate) {
+    ccl::ComplementaryFilter filter(0.98f, 0.1f);  // Trust the gyro
 
     float target_angle = 0.0f;
     float gyro_rate = 1.0f;
