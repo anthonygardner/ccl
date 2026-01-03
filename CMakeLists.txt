@@ -34,7 +34,6 @@ add_library(
     src/ccl.cpp
     src/complementary_filter.cpp
     src/pid.cpp
-    src/uart.cpp
 )
 
 target_include_directories(
