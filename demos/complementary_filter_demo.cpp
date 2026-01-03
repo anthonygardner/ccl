@@ -1,7 +1,7 @@
 #include <ccl/ccl.hpp>
 
 int main(int argc, char* argv[]) {
-    const char* device = "/dev/ttyAMA0";
+    const char* device = "/dev/ttyACM0";
 
     if (argc > 1) {
         device = argv[1];
