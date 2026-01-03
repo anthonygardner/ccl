@@ -32,6 +32,7 @@ FetchContent_MakeAvailable(googletest pybind11)
 add_library(
     ccl
     src/ccl.cpp
+    src/complementary_filter.cpp
     src/pid.cpp
 )
 
@@ -60,6 +61,7 @@ if(BUILD_CXX_TESTS)
     add_executable(
         ccl_test
         tests/ccl_test.cpp
+        tests/complementary_filter_test.cpp
         tests/pid_test.cpp
     )
 
