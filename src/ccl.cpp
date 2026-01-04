@@ -22,6 +22,7 @@ int run(const char* device, speed_t baud) {
         return 1;
     }
 
+    // https://blog.mbedded.ninja/programming/operating-systems/linux/linux-serial-ports-using-c-cpp/
     termios tty;
     tcgetattr(fd, &tty);
 
