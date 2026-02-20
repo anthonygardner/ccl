@@ -27,7 +27,13 @@ FetchContent_Declare(
     GIT_TAG v2.12.0
 )
 
-FetchContent_MakeAvailable(googletest pybind11)
+FetchContent_Declare(
+    utest
+    GIT_REPOSITORY https://github.com/sheredom/utest.h.git
+    GIT_TAG master
+)
+
+FetchContent_MakeAvailable(googletest pybind11 utest)
 
 add_library(
     ccl
@@ -55,6 +61,24 @@ target_include_directories(
 target_link_libraries(
     ccl
     PUBLIC
+    ccl_core
+)
+
+add_executable(
+    ccl_core_test 
+    tests/core/main.c
+    tests/core/test_pid.c
+)
+
+target_include_directories(
+    ccl_core_test 
+    PRIVATE 
+    ${utest_SOURCE_DIR}
+)
+
+target_link_libraries(
+    ccl_core_test 
+    PRIVATE 
     ccl_core
 )
 
