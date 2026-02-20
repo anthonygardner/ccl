@@ -1,12 +1,14 @@
-# Common Controls Library (CCL)
+## Common Controls Library (CCL)
 
-## Prerequisites
+### Dependencies
 
 - CMake 3.15+
 - C++17 compiler
 - uv (Python package manager)
 
-## Setup
+### Usage
+
+#### Setup
 
 ```bash
 # Configure CMake
@@ -22,7 +24,17 @@ make build.cpp
 make build.py
 ```
 
-## Testing
+#### Development
+
+```bash
+# Remove build artifacts
+make clean
+
+# Open marimo notebook
+make notebook
+```
+
+#### Testing
 
 ```bash
 # Run C tests
@@ -35,21 +47,12 @@ make test.cpp
 make test.py
 ```
 
-## Development
-
-```bash
-# Remove build artifacts
-make clean
-
-# Open marimo notebook
-make notebook
-```
-
-## Video Demonstration
+### Video Demonstration
 
 ![PID Controller Demo](assets/pid.gif)
 
-## Project Tree
+### Project Tree
+
 ```
 ccl/
 ├── core/              # C source and header files
