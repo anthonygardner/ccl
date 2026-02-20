@@ -1,6 +1,4 @@
-# ccl
-
-Common Controls Library (CCL)
+# Common Controls Library (CCL)
 
 ## Prerequisites
 
