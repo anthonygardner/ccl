@@ -47,6 +47,10 @@ make clean
 make notebook
 ```
 
+## Video Demonstration
+
+![PID Controller Demo](assets/pid.gif)
+
 ## Project Structure
 ```
 ccl/
