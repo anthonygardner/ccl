@@ -49,7 +49,7 @@ make notebook
 
 ![PID Controller Demo](assets/pid.gif)
 
-## Project Structure
+## Project Tree
 ```
 ccl/
 ├── core/              # C source and header files
