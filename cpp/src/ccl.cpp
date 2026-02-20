@@ -6,8 +6,8 @@
 #include <termios.h>
 #include <unistd.h>
 
-#include <ccl/ccl.hpp>
-#include <ccl/complementary_filter.hpp>
+#include "ccl/ccl.hpp"
+#include "ccl/complementary_filter.hpp"
 
 namespace ccl {
 

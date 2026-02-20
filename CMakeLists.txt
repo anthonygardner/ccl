@@ -7,7 +7,7 @@ project(
     ccl
     VERSION 0.0.1
     DESCRIPTION "Common Control Library (CCL)"
-    LANGUAGES CXX
+    LANGUAGES C CXX
 )
 
 option(BUILD_PYTHON_API "Build Python API using pybind11" ON)
@@ -31,29 +31,58 @@ FetchContent_MakeAvailable(googletest pybind11)
 
 add_library(
     ccl
-    src/ccl.cpp
-    src/complementary_filter.cpp
-    src/pid.cpp
+    cpp/src/ccl.cpp
+    cpp/src/complementary_filter.cpp
+    cpp/src/pid.cpp
 )
 
 target_include_directories(
     ccl PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/cpp/include/
 )
 
-add_executable(complementary_filter_demo demos/complementary_filter_demo.cpp)
-target_link_libraries(complementary_filter_demo ccl)
+add_library(
+    ccl_core
+    core/src/pid.c
+)
+
+target_include_directories(
+    ccl_core
+    PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/core/include/
+)
+
+target_link_libraries(
+    ccl
+    PUBLIC
+    ccl_core
+)
+
+add_executable(
+    complementary_filter_demo 
+    demos/complementary_filter.cpp
+)
+
+target_link_libraries(
+    complementary_filter_demo 
+    ccl
+)
 
 if(BUILD_PYTHON_API)
     pybind11_add_module(
         _ccl
-        src/python.cpp
+        python/bindings.cpp
     )
 
-    target_link_libraries(_ccl PRIVATE ccl)
+    target_link_libraries(
+        _ccl 
+        PRIVATE 
+        ccl
+    )
 
     set_target_properties(
-        _ccl PROPERTIES
+        _ccl 
+        PROPERTIES
         LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/python/ccl/
     )
 endif()
@@ -63,13 +92,14 @@ if(BUILD_CXX_TESTS)
 
     add_executable(
         ccl_test
-        tests/ccl_test.cpp
-        tests/complementary_filter_test.cpp
-        tests/pid_test.cpp
+        tests/cpp/ccl_test.cpp
+        tests/cpp/complementary_filter_test.cpp
+        tests/cpp/pid_test.cpp
     )
 
     target_link_libraries(
-        ccl_test PRIVATE
+        ccl_test 
+        PRIVATE
         ccl
         GTest::gtest_main
     )

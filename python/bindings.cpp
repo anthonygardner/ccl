@@ -1,7 +1,7 @@
 #include <pybind11/pybind11.h>
 
-#include <ccl/ccl.hpp>
-#include <ccl/pid.hpp>
+#include "ccl/ccl.hpp"
+#include "ccl/pid.hpp"
 
 namespace py = pybind11;
 

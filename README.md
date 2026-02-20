@@ -14,21 +14,27 @@ Common Controls Library (CCL)
 # Configure CMake
 cmake -B build -DCMAKE_INSTALL_PREFIX=build/install
 
+# Build C library and tests
+make build.core
+
 # Build C++ library and tests
 make build.cpp
 
 # Install Python package in development mode
-make build.python
+make build.py
 ```
 
 ## Testing
 
 ```bash
+# Run C tests
+make test.core
+
 # Run C++ tests
 make test.cpp
 
 # Run Python tests
-make test.python
+make test.py
 ```
 
 ## Development
@@ -44,10 +50,10 @@ make notebook
 ## Project Structure
 ```
 ccl/
-├── include/           # C++ headers
-├── src/               # C++ source files
-├── tests/             # C++ and Python tests
-├── python/ccl/        # Python package with bindings
+├── core/              # C source and header files
+├── cpp/               # C++ source and header files
 ├── notebooks/         # Marimo notebooks
+├── python/ccl/        # Python package with bindings
+├── tests/             # C, C++, and Python tests
 └── CMakeLists.txt
 ```

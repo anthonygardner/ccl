@@ -1,4 +1,4 @@
-#include <ccl/ccl.hpp>
+#include "ccl/ccl.hpp"
 
 int main(int argc, char* argv[]) {
     const char* device = "/dev/ttyACM0";

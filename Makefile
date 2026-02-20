@@ -1,9 +1,11 @@
-.PHONY: build.cpp build.python clean install notebook test.cpp test.python
+.PHONY: build.core build.cpp build.py clean install notebook test.core test.cpp test.py
+
+build.core:
 
 build.cpp:
-	cmake --build build --target install -j$(nproc)
+	cmake -S . -B build && cmake --build build -j
 
-build.python:
+build.py:
 	uv pip install -e ".[dev]"
 
 clean:
@@ -13,10 +15,12 @@ commit:
 	uv run cz c
 
 notebook:
-	uv run marimo edit notebooks/main.py --host 0.0.0.0 --headless --no-token
+	uv run marimo edit notebooks/main.py --host 0.0.0.0 --port 2718 --headless --no-token
+
+test.core:
 
 test.cpp:
 	cd build && ctest -V && cd -
 
-test.python:
+test.py:
 	uv run pytest
