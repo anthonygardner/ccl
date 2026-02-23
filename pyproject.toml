@@ -5,6 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ccl"
 version = "0.0.1"
+requires-python = ">=3.12"
 dependencies = [
     "altair>=6.0.0",
     "pandas>=3.0.1",

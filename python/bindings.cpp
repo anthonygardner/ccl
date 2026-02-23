@@ -22,11 +22,11 @@ PYBIND11_MODULE(_ccl, m) {
     py::class_<ccl::PID>(m, "PID")
         .def(py::init<>())
         .def(py::init<double, double, double>(), py::arg("kp"), py::arg("ki"), py::arg("kd"))
-        .def_readwrite("kp", &ccl::PID::kp)
-        .def_readwrite("ki", &ccl::PID::ki)
-        .def_readwrite("kd", &ccl::PID::kd)
-        .def_readwrite("min_output", &ccl::PID::min_output)
-        .def_readwrite("max_output", &ccl::PID::max_output)
+        .def_property("kp", &ccl::PID::get_kp, &ccl::PID::set_kp)
+        .def_property("ki", &ccl::PID::get_ki, &ccl::PID::set_ki)
+        .def_property("kd", &ccl::PID::get_kd, &ccl::PID::set_kd)
+        .def_property("min_output", &ccl::PID::get_min_output, &ccl::PID::set_min_output)
+        .def_property("max_output", &ccl::PID::get_max_output, &ccl::PID::set_max_output)
         .def("update", &ccl::PID::update, py::arg("setpoint"), py::arg("measurement"), py::arg("dt"))
         .def("reset", &ccl::PID::reset);
 }

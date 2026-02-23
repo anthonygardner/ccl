@@ -4,7 +4,7 @@ build.core:
 	cmake -S . -B build -DBUILD_PYTHON_API=OFF -DBUILD_CXX_TESTS=OFF && cmake --build build --target ccl_core ccl_core_test -j
 
 build.cpp:
-	cmake -S . -B build && cmake --build build -j
+	cmake -S . -B build -DPython3_EXECUTABLE=$$(uv run which python) && cmake --build build -j
 
 build.py:
 	uv pip install -e ".[dev]"

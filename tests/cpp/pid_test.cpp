@@ -4,9 +4,9 @@
 
 TEST(PIDTest, DefaultConstructorZeroGains) {
     ccl::PID pid;
-    EXPECT_EQ(pid.kp, 0.0);
-    EXPECT_EQ(pid.ki, 0.0);
-    EXPECT_EQ(pid.kd, 0.0);
+    EXPECT_EQ(pid.get_kp(), 0.0);
+    EXPECT_EQ(pid.get_ki(), 0.0);
+    EXPECT_EQ(pid.get_kd(), 0.0);
 }
 
 TEST(PIDTest, POnlyReturnsKpTimesError) {
@@ -17,16 +17,16 @@ TEST(PIDTest, POnlyReturnsKpTimesError) {
 
 TEST(PIDTest, OutputClampedToMin) {
     ccl::PID pid(1.0, 0.0, 0.0);
-    pid.min_output = -1.5;
+    pid.set_min_output(-1.5);
     double output = pid.update(-10.0, 0.0, 0.1);
-    EXPECT_DOUBLE_EQ(output, pid.min_output);
+    EXPECT_DOUBLE_EQ(output, pid.get_min_output());
 }
 
 TEST(PIDTest, OutputClampedToMax) {
     ccl::PID pid(1.0, 0.0, 0.0);
-    pid.max_output = 1.5;
+    pid.set_max_output(1.5);
     double output = pid.update(10.0, 0.0, 0.1);
-    EXPECT_DOUBLE_EQ(output, pid.max_output);
+    EXPECT_DOUBLE_EQ(output, pid.get_max_output());
 }
 
 TEST(PIDTest, ResetClearsIntegral) {
